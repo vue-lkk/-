@@ -1,0 +1,11 @@
+.inputWrapper {
+  margin-bottom: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.inputWrapper input {
+  width: 98%;
+  height: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}/*# sourceMappingURL=QuestionInput.module.css.map */

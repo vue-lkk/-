@@ -1,0 +1,15 @@
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.vertivalItem {
+  margin-bottom: 10px;
+}
+
+.horizontalItem {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=QuestionCheckbox.module.css.map */

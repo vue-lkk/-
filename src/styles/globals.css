@@ -1,0 +1,50 @@
+/* 轮播图小点样式 */
+.ant-carousel .slick-dots li button {
+  background: rgb(49, 49, 49) !important;
+}
+
+/* 轮播图左右控件样式 */
+/* .ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover {
+  left: 10px;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover {
+  right: 10px;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.ant-carousel .slick-next::before{
+  content:'' !important;
+} */
+
+.ant-avatar > img {
+  width: 32px;
+  height: 32px;
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+.ant-list .ant-list-item {
+  margin: 0;
+  padding: 0;
+}

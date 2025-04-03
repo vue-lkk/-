@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/components/QuestionCompoents/QuestionTextarea/QuestionTextarea.module.scss","QuestionTextarea.module.css"],"names":[],"mappings":"AAAA;EACE,mBAAA;EACA,cAAA;ACCF;ADCE;EACE,UAAA;EACA,yBAAA;EACA,kBAAA;EACA,iBAAA;ACCJ","file":"QuestionTextarea.module.css"}

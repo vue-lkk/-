@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/components/QuestionCompoents/QuestionCheckbox/QuestionCheckbox.module.scss","QuestionCheckbox.module.css"],"names":[],"mappings":"AAAA;EACE,UAAA;EACA,SAAA;EACA,gBAAA;ACCF;;ADEA;EACE,mBAAA;ACCF;;ADGA;EACE,qBAAA;EACA,kBAAA;EACA,mBAAA;ACAF","file":"QuestionCheckbox.module.css"}

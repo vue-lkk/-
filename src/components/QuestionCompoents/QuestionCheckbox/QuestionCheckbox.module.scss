@@ -1,0 +1,16 @@
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+// 垂直
+.vertivalItem {
+  margin-bottom: 10px;
+}
+
+// 水平
+.horizontalItem {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
