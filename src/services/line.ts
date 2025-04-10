@@ -15,11 +15,6 @@ export async function updatePixelsByDomainName(data: any) {
   return request.post(`/api/update`, data);
 }
 
-// 获取模板后台
-export async function getQuestionByuserName(userName: string) {
-  return request.get(`/api/checkbyusername?userName=${userName}`);
-}
-
 // 批量添加-根据国家来批量统一添加
 export async function addByNation(data: string) {
   return request.post(`/api/add`, data);
@@ -53,4 +48,29 @@ export async function getToLines(data: string) {
 // 重置点击量
 export async function updateResetClick(data: any) {
   return request.post(`/api/clearclick`, data);
+}
+
+// 获取模板后台
+export async function getQuestionByuserName(userName: string) {
+  return request.get(`/api/checkbyusername?userName=${userName}`);
+}
+
+// 根据用户名查询所有后台
+export async function checkbyusername(data: string) {
+  return request.get(`/api/checkbyusername?userName=${data}`);
+}
+
+// 根据用户名查询所有后台
+export async function checkbyusernameAndNation(
+  userName: string,
+  nation: string
+) {
+  return request.get(
+    `/api/heckbyusernameAndNation?userName=${userName}&nation=${nation}`
+  );
+}
+
+// 根据用户名+域名数组批量删除后台
+export async function deletebydomainNameArr(data: any) {
+  return request.post(`/api/deletebackstage`, data);
 }

@@ -20,25 +20,31 @@ export default async function handler(req, res) {
     const { nation, lineNameArr } = req.body;
     console.log("###", nation, lineNameArr);
 
+    // 处理删除lineName为null情况
+    const lineNameValue = lineNameArr.map((item) =>
+      item === "null" ? null : item
+    );
+    console.log(lineNameValue);
+
     // 连接数据库
     const client = await clientPromise;
     const db = client.db("line"); // 替换为你的数据库名
 
     // 批量删除数据
-    const result = db.collection("dataEntries").updateMany(
+    const result = await db.collection("dataEntries").updateMany(
       { nation },
       {
         $pull: {
           lines: {
-            lineName: { $in: lineNameArr }, // 删除指定名称的line号数组
+            lineName: { $in: lineNameValue }, // 删除指定名称的line号数组
           },
         },
       }
     );
-
+    console.log(result);
     res.status(201).json({
       message: "删除成功",
-      data: { ...result, _id: result.insertedId },
+      data: { ...result },
     });
   } catch (error) {
     console.error("Database error:", error);

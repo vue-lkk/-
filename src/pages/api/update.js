@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         },
         {
           $set: {
-            "lines.$[].pixels": pixels, // 使用 $ 定位符匹配数组元素
+            "lines.$[].pixels": pixels.replace(/\s+/g, ""), // 去除所有空格 // 使用 $ 定位符匹配数组元素
           },
         }
       );
@@ -48,8 +48,8 @@ export default async function handler(req, res) {
       },
       {
         $set: {
-          [`lines.${key}.comment`]: comment, // 动态索引
-          [`lines.${key}.lineName`]: lineName,
+          [`lines.${key}.comment`]: comment.replace(/\s+/g, ""), // 动态索引
+          [`lines.${key}.lineName`]: lineName.replace(/\s+/g, ""),
         },
       }
     );

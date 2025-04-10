@@ -1,5 +1,5 @@
 import {
-  getQuestionByuserName,
+  checkbyusername,
   addByNation,
   deleteByNation,
   createByNation,
@@ -9,6 +9,7 @@ import {
   PlusCircleOutlined,
   DeleteOutlined,
   DiffOutlined,
+  FileAddOutlined,
 } from "@ant-design/icons";
 import {
   Card,
@@ -24,16 +25,16 @@ import {
   Result,
   Select,
   Switch,
+  Flex,
 } from "antd";
 import type { TableProps, FormProps } from "antd";
 const { Option } = Select;
+import FButton from "@/components/FButton";
 
 export default function Home(props: any) {
   const { data } = props.dataLines;
-  const [templates, setTemplates] = useState([
-    ...data,
-    { _id: "custom", userName: "", nation: "自定义" },
-  ]);
+  console.log("模板后台:", data);
+  const [templates, setTemplates] = useState([...data]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // 编辑项
   const [changeLine, setChangeLine] = useState<any>({});
@@ -57,7 +58,7 @@ export default function Home(props: any) {
     setType("add");
     showModal();
     setChangeLine(item);
-    console.log("@@@", item);
+
     // const data = await addByNation()
   };
 
@@ -66,7 +67,6 @@ export default function Home(props: any) {
     setType("del");
     showModal();
     setChangeLine(item);
-    console.log("@@@", item);
   };
 
   // 新建后台
@@ -74,7 +74,6 @@ export default function Home(props: any) {
     setType("create");
     showModal();
     setChangeLine(item);
-    console.log("@@@", item);
   };
 
   // form
@@ -111,6 +110,8 @@ export default function Home(props: any) {
     "林力梵",
     "韦恒平",
     "秦发龙",
+    "邓文浩",
+    "何鹏",
   ];
 
   const [custom, setCustom] = useState(false);
@@ -124,21 +125,30 @@ export default function Home(props: any) {
     try {
       // 批量添加
       if (type === "add") {
-        // 根据换行符分割字符串
+        // 1. 按行分割
         const lineArr = values.lineArr?.toString()?.split("\n");
-        values.lineArr = lineArr;
-        const res = await addByNation(values as any);
+        // 2. 处理每行
+        const processedLines = lineArr
+          ?.map((line) => line.trim()) // 去除每行首尾空格
+          .filter((line) => line.length > 0); // 过滤空行
+        values.lineArr = processedLines;
+        const res: any = await addByNation(values as any);
+        console.log("@3", res);
         messageApi.open({
           type: "success",
-          content: "批量添加成功",
+          content: res.message,
         });
       }
 
       // 批量删除
       if (type === "del") {
-        // 以 ',' 分割数据
-        const lineNameArr = values.lineNameArr?.toString()?.split(",");
-        values.lineNameArr = lineNameArr;
+        // 1.以英文 ',' 或者中文 ‘，’ 分割数据
+        const lineNameArr = values.lineNameArr?.toString()?.split(/[,，]\s*/);
+        // 2. 处理每行
+        const processedLines = lineNameArr
+          ?.map((line) => line.trim()) // 去除每行首尾空格
+          .filter((line) => line.length > 0); // 过滤空行
+        values.lineNameArr = processedLines;
         const res = await deleteByNation(values as any);
         messageApi.open({
           type: "success",
@@ -154,7 +164,7 @@ export default function Home(props: any) {
         const data = {
           nation,
           userName: username,
-          domainName: domainname,
+          domainName: domainname?.replace(/\s+/g, ""), // 去除所有空格
         };
         console.log("1213", data);
         const res: any = await createByNation(data as any);
@@ -192,70 +202,63 @@ export default function Home(props: any) {
   return (
     <div
       style={{
-        margin: "50px",
+        margin: "20px",
       }}
     >
       {/* 提示 */}
       {contextHolder} {/* 必须添加在组件最外层 */}
       <div>
-        <h1 style={{ marginBottom: "30px" }}>后台模板</h1>
+        <Result
+          style={{ padding: "20px" }}
+          icon={<FileAddOutlined />}
+          title="后台模板"
+        />
         {/* 后台模板 */}
-        <Row gutter={[60, 60]}>
-          {templates &&
-            templates.map((item: any) => {
-              return (
-                <Col span={8} key={item._id}>
-                  <Card
-                    key={item._id}
-                    actions={[
-                      <Tooltip
-                        key={1}
-                        placement="top"
-                        title="批量添加链接"
-                        color="blue"
-                      >
-                        <PlusCircleOutlined
-                          key="add"
-                          onClick={() => add(item)}
-                        />
-                      </Tooltip>,
-                      <Tooltip
-                        key={2}
-                        placement="top"
-                        title="批量删除链接"
-                        color="red"
-                      >
-                        <DeleteOutlined key="del" onClick={() => del(item)} />
-                      </Tooltip>,
-                      <Tooltip
-                        key={3}
-                        placement="top"
-                        title="新建后台"
-                        color="green"
-                      >
-                        <DiffOutlined
-                          key="create"
-                          onClick={() => create(item)}
-                        />
-                      </Tooltip>,
-                    ]}
-                    style={{ minWidth: 300, background: "rgb(236 236 236)" }}
-                  >
-                    <Card.Meta
-                      title={item.nation}
-                      description={
-                        <>
-                          <p>
-                            模板域名：<Tag>{item.domainName}</Tag>
-                          </p>
-                        </>
-                      }
-                    />
-                  </Card>
-                </Col>
-              );
-            })}
-        </Row>
+        <Flex wrap gap={60} justify="center">
+          {Array.from(templates, (item, i) => (
+            <Card
+              key={item._id}
+              hoverable
+              actions={[
+                <Tooltip
+                  key={1}
+                  placement="top"
+                  title="批量添加链接"
+                  color="blue"
+                >
+                  <PlusCircleOutlined key="add" onClick={() => add(item)} />
+                </Tooltip>,
+                <Tooltip
+                  key={2}
+                  placement="top"
+                  title="批量删除链接"
+                  color="red"
+                >
+                  <DeleteOutlined key="del" onClick={() => del(item)} />
+                </Tooltip>,
+                <Tooltip key={3} placement="top" title="新建后台" color="green">
+                  <DiffOutlined key="create" onClick={() => create(item)} />
+                </Tooltip>,
+              ]}
+              style={{
+                minWidth: 340,
+                background: "rgb(236 236 236)",
+              }}
+            >
+              <Card.Meta
+                title={item.nation}
+                description={
+                  <>
+                    <p>
+                      模板域名：<Tag>{item.domainName}</Tag>
+                    </p>
+                  </>
+                }
+              />
+            </Card>
+          ))}
+        </Flex>
+
         {/* 对话框 */}
         <Modal
           title={changeLine.nation}
@@ -359,6 +362,9 @@ http://pf.kakao.com/_DCxfCn/chat11,312,@167
             </Form.Item>
           </Form>
         </Modal>
+
+        {/* 悬浮按钮 */}
+        <FButton />
       </div>
     </div>
   );
@@ -367,15 +373,13 @@ http://pf.kakao.com/_DCxfCn/chat11,312,@167
 // 请求
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function getServerSideProps(context: any) {
-  // const { id = "" } = context.params;
-  // console.log("@@@", id);
   // 存储返回的后台数据
   let dataLines = null;
   try {
     // 发送请求：根据 id 获取问卷数据
-    const res = await getQuestionByuserName("lkk");
+    const res = await checkbyusername("lkk");
     dataLines = res;
-    console.log(res);
+    console.log("模板后台", res);
   } catch (error) {
     console.error("获取数据失败", error);
     dataLines = { code: 1, msg: "数据获取失败" };

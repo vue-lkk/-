@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     const { userName, domainName, nation } = req.body;
-    console.log(userName, domainName, nation);
+    console.log("新建后台：", userName, domainName, nation);
 
     // 验证必要字段
     if (!userName || !domainName || !nation) {
@@ -29,56 +29,18 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db("line"); // 替换为你的数据库名
 
-    // 构建数据格式
-    async function createlineList() {
-      let templateLines = [];
-      switch (nation) {
-        case "日本-减肥":
-          // 查询数据库
-          templateLines = await db
-            .collection("dataEntries")
-            .findOne({ userName: "lkk", domainName: "jpjf.com", nation });
-          break;
-        case "韩国-减肥":
-          // 查询数据库
-          templateLines = await db
-            .collection("dataEntries")
-            .findOne({ userName: "lkk", domainName: "krjf.com", nation });
-          break;
-        case "日本-男科":
-          // 查询数据库
-          templateLines = await db
-            .collection("dataEntries")
-            .findOne({ userName: "lkk", domainName: "jpnk.com", nation });
-          break;
-        case "韩国-男科":
-          templateLines = [];
-          break;
-        case "日本-丰胸":
-          // 查询数据库
-          templateLines = await db
-            .collection("dataEntries")
-            .findOne({ userName: "lkk", domainName: "jpfx.com", nation });
-          break;
-        default:
-          // 自定义
-          templateLines = [];
-          break;
-      }
-
-      return templateLines;
-    }
-
-    const lineList = await createlineList();
-
-    console.log("@@@", lineList);
+    // 根据 广告类型、模板用户【lkk】 查询对应的模板
+    const result = await db.collection("dataEntries").findOne({
+      nation,
+      userName: { $regex: new RegExp(`^lkk$`, "i") },
+    });
 
     // 构建数据对象
     const dataEntry = {
       userName, // 用户名称
       domainName, // 域名名称
       nation, // 国家
-      lines: lineList.lines || [], // line所有相关信息
+      lines: result.lines || [], // line所有相关信息
       banned: false,
       createdAt: new Date(),
     };

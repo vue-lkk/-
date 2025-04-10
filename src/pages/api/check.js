@@ -48,13 +48,14 @@ export default async function handler(req, res) {
 
     if (result.length > 0) {
       res.status(201).json({
+        code: 201,
         message: "获取成功",
         data: { ...result, _id: result.insertedId },
       });
     } else {
       res.status(201).json({
+        code: 202,
         message: "后台不存在",
-        data: {},
       });
     }
   } catch (error) {

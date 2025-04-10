@@ -35,44 +35,8 @@ export default async function handler(req, res) {
       switch (nation) {
         case "日本-减肥":
           lines = [
-            "https://lin.ee/tgP6Rr7,芙蓉,@577fmvgs", //2  芙蓉	@577fmvgs
-            "https://lin.ee/8VlH1q6,芙蓉,@158demzd", //3  芙蓉	@158demzd
-            "https://lin.ee/orKoYKX,芙蓉,@694vxxln", //4  芙蓉	@694vxxln
-            "https://lin.ee/6a0pLNi,芙蓉,@929tukav", //5  芙蓉	@929tukav
-            "https://lin.ee/ww3AYld,芙蓉,@598lvbse", //6  芙蓉	@598lvbse
-            "https://lin.ee/s2p0QZs,芙蓉,@884pjcnh", //7  芙蓉	@884pjcnh
-            "https://lin.ee/zPILsOm,芙蓉,@847xxzhm", //8  芙蓉	@847xxzhm
-            "https://lin.ee/lcD7PJs,香草,@176hgzlh", //9  香草	@176hgzlh
-            "https://lin.ee/GrFEXnU,香草,@961senzs", //10 香草	@961senzs
-            "https://lin.ee/URvZE8h,香草,@708idawv", //11 香草	@708idawv
-            "https://lin.ee/GxfeO30,芙蓉,@346nbnko", //12 芙蓉	@346nbnko
-            "https://lin.ee/tn6itxY,芙蓉,@611kbyxl", //17 芙蓉	@611kbyxl
-            "https://lin.ee/QqannGP,芙蓉,@855lrvck", //21 芙蓉	@855lrvck
-            "https://lin.ee/bJFkG05,芙蓉,@342poxot", //22 芙蓉	@342poxot
-            "https://lin.ee/saYlFeL,芙蓉,@470nhzvp", //27 芙蓉	@470nhzvp
-            "https://lin.ee/2Lf8SZV,芙蓉,@841qrabu", //31 芙蓉	@841qrabu
-            "https://lin.ee/qhkkKkm,芙蓉,@651abnps", //34 芙蓉	@651abnps
-            "https://lin.ee/nnWCxip,芙蓉,@052kqotw", //35 芙蓉	@052kqotw
-            "https://lin.ee/qxrtH2c,香草,@884lgmet", //36 香草	@884lgmet
-            "https://lin.ee/kmgpEfu,芙蓉,@125kpdjx", //37 芙蓉	@125kpdjx
-            "https://lin.ee/5VPdho9,芙蓉,@168evegl", //38 芙蓉	@168evegl
-            "https://lin.ee/6Q2KzYe,芙蓉,@975dnkbv", //40 芙蓉	@975dnkbv
-            "https://lin.ee/bH5oIj6,芙蓉,@746bvsjs", //41 芙蓉	@746bvsjs
-            "https://lin.ee/Ku2WucK,香草,@665osfqs", //42 香草	@665osfqs
-            "https://lin.ee/EuqxAZ1,芙蓉,@984puauu", //44 芙蓉	@984puauu
-            "https://lin.ee/4TmostP,芙蓉,@218dsbhd", //48 芙蓉	@218dsbhd
-            "https://lin.ee/QW6kYx7,芙蓉,@102rfudc", //52 芙蓉	@102rfudc
-            "https://lin.ee/l2CNpl7,芙蓉,@464lihko", //54 芙蓉	@464lihko
-            "https://lin.ee/56UGznF,芙蓉,@819tjemh", //56 芙蓉	@819tjemh
-            "https://lin.ee/BLEXPfD,芙蓉,@770adziw", //57 芙蓉	@770adziw
-            "https://lin.ee/ENl7P7P,芙蓉,@065avxxz", //58 芙蓉	@065avxxz
-            "https://lin.ee/TCd2e7B,芙蓉,@219qercw", //59 芙蓉	@219qercw
-            "https://lin.ee/hYRUfBF,芙蓉,@607flkoj", //60 芙蓉	@607flkoj
-            "https://lin.ee/13tNbBh,芙蓉,@021rqdrd", //61 芙蓉	@021rqdrd
-            "https://lin.ee/rHiE4aR,芙蓉,@464lihko", //62 芙蓉	@464lihko
-            "https://lin.ee/FlhN7e3,芙蓉,@977ygdgo", //63 芙蓉	@977ygdgo
-            "https://lin.ee/vkWDhEM,芙蓉,@795oxwyt", //64 芙蓉	@795oxwyt
-            "https://lin.ee/GSdZXy6,芙蓉,@444jbbut", //65 芙蓉	@444jbbut
+            "https://lin.ee/tgP6Rr7,芙蓉,@577fmvgs",
+            "https://lin.ee/8VlH1q6,芙蓉,@158demzd",
           ];
           break;
         case "韩国-减肥":
@@ -91,7 +55,14 @@ export default async function handler(req, res) {
           ];
           break;
         case "韩国-男科":
-          lines = [];
+          lines = [
+            "http://pf.kakao.com/_fTpGn/chat,韩国男科,kse639",
+            "http://pf.kakao.com/_FxhDGn/chat,韩国男科,art300",
+            "http://pf.kakao.com/_EgxkGn/chat,韩国男科,uth517",
+            "http://pf.kakao.com/_xexlpGn/chat,韩国男科,opd906",
+            "http://pf.kakao.com/_vxnDGn/chat,韩国男科,fre632",
+            "http://pf.kakao.com/_DfDGn/chat,韩国男科,tav901",
+          ];
           break;
         case "日本-丰胸":
           lines = [
@@ -100,6 +71,9 @@ export default async function handler(req, res) {
             "https://line.me/R/ti/p/@358oezlx,丰胸,@358oezlx",
             "https://line.me/R/ti/p/@647lnwpj,丰胸,@647lnwpj",
           ];
+          break;
+        case "韩国-丰胸":
+          lines = [];
           break;
         default:
           lines = [];

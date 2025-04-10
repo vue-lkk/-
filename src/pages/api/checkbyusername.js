@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     } else {
       res.status(201).json({
         message: "后台不存在",
-        data: {},
+        data: [],
       });
     }
   } catch (error) {

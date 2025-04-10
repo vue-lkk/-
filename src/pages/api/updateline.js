@@ -1,5 +1,4 @@
 import clientPromise from "../../lib/mongodb";
-import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   // 处理 CORS 预检请求
@@ -18,8 +17,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { _id, domainName, lineName, status } = req.body;
-    console.log(_id, lineName, status);
+    const { domainName, lineName, link, status } = req.body;
+    console.log(domainName, lineName, link, status);
 
     // 连接数据库
     const client = await clientPromise;
@@ -28,9 +27,9 @@ export default async function handler(req, res) {
     // 修改上线/下线
     db.collection("dataEntries").updateOne(
       {
-        // _id: new ObjectId(_id),
-        domainName,
-        "lines.lineName": lineName,
+        domainName, // 域名
+        "lines.lineName": lineName, // 号名
+        "lines.link": link, // 链接
       },
       {
         $set: {
